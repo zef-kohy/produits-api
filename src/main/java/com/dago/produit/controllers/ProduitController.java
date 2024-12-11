@@ -26,8 +26,25 @@ public class ProduitController {
         return produitService.getAllProduits();
     }
 
+    @GetMapping("/{id}")
+    public Produit getProduitById(@PathVariable long id){
+        return produitService.getProduitById(id);
+    }
+
     @PostMapping("/create")
     public Produit createProduit(@RequestBody Produit produit){
         return produitService.createProduit(produit);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteProduit(@PathVariable long id){
+        produitService.deleteProduitById(id);
+
+        return "Produit supprimé avec succès";
+    }
+
+    @PutMapping("/{id}")
+    public Produit editProduit(@PathVariable long id, @RequestBody Produit produit){
+        return produitService.editProduit(id, produit);
     }
 }
